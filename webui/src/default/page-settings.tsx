@@ -85,6 +85,19 @@ export default function createPageSettings(theme: Theme, prefersDarkMode: boolea
         <Typography variant='h4' classes={{ root: searchStyle().typography }}>
             Extensions for VS Code Compatible Editors
         </Typography>;
+    
+    const termsStyle = makeStyles({
+        typography: {
+            marginBottom: theme.spacing(2),
+            fontWeight: theme.typography.fontWeightLight,
+            letterSpacing: 4,
+            textAlign: 'center'
+        }
+    });
+    const downloadTerms: React.FunctionComponent = () =>
+        <Typography classes={{ root: termsStyle().typography }}>
+            Extensions for VS Code Compatible Editors
+        </Typography>;
 
     const additionalRoutes: React.FunctionComponent = () =>
         <Route path='/about' render={() => <About />} />;
@@ -103,6 +116,7 @@ export default function createPageSettings(theme: Theme, prefersDarkMode: boolea
                 }
             },
             searchHeader,
+            downloadTerms,
             additionalRoutes
         },
         urls: {

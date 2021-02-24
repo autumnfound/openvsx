@@ -139,6 +139,7 @@ class ExtensionDetailOverviewComponent extends React.Component<ExtensionDetailOv
         const { classes, extension } = this.props;
         const ClaimNamespace = this.context.pageSettings.elements.claimNamespace;
         const ReportAbuse = this.context.pageSettings.elements.reportAbuse;
+        const DownloadTerms = this.context.pageSettings.elements.downloadTerms;
         return <React.Fragment>
             <Box className={classes.overview}>
                 <Box flex={5} overflow='auto'>
@@ -176,6 +177,7 @@ class ExtensionDetailOverviewComponent extends React.Component<ExtensionDetailOv
                                 className={classes.downloadButton} >
                                 Download
                             </Button>
+                            {DownloadTerms ? <DownloadTerms/> : ''}
                         </Box>
                         {
                             extension.bundledExtensions !== undefined && extension.bundledExtensions.length > 0 ?
