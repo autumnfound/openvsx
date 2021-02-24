@@ -85,7 +85,7 @@ export default function createPageSettings(theme: Theme, prefersDarkMode: boolea
         <Typography variant='h4' classes={{ root: searchStyle().typography }}>
             Extensions for VS Code Compatible Editors
         </Typography>;
-    
+
     const termsStyle = makeStyles({
         typography: {
             marginBottom: theme.spacing(2),
