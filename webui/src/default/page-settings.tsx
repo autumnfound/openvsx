@@ -96,7 +96,7 @@ export default function createPageSettings(theme: Theme, prefersDarkMode: boolea
     });
     const downloadTerms: React.FunctionComponent = () =>
         <Typography classes={{ root: termsStyle().typography }}>
-            Extensions for VS Code Compatible Editors
+            By clicking download, you accept this website's Terms of Use (link to Terms of Use)
         </Typography>;
 
     const additionalRoutes: React.FunctionComponent = () =>
