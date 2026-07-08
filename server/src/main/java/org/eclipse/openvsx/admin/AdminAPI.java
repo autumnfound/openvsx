@@ -885,7 +885,7 @@ public class AdminAPI {
             for (var publisher : request.publishers()) {
                 var key = "%s:%s".formatted(publisher.loginName(), publisher.provider());
                 try {
-                    var result = admins.revokePublisherContributions(publisher.provider(), publisher.loginName(), adminUser, request.reason());
+                    var result = admins.revokePublisherContributions(publisher.provider(), publisher.loginName(), adminUser, request.reason(), request.isMalicious());
                     resultMap.put(key, result);
                 } catch (ErrorResultException exc) {
                     resultMap.put(key, exc.toResponseEntity().getBody());

@@ -429,11 +429,11 @@ public class AdminService {
 
     @Transactional(rollbackOn = ErrorResultException.class)
     public ResultJson revokePublisherContributions(String provider, String loginName, UserData admin) {
-        return revokePublisherContributions(provider, loginName, admin, null);
+        return revokePublisherContributions(provider, loginName, admin, null, false);
     }
 
     @Transactional(rollbackOn = ErrorResultException.class)
-    public ResultJson revokePublisherContributions(String provider, String loginName, UserData admin, String reason) {
+    public ResultJson revokePublisherContributions(String provider, String loginName, UserData admin, String reason, boolean isMalicious) {
         var user = repositories.findUserByLoginName(provider, loginName);
         if (user == null) {
             throw new ErrorResultException(userNotFoundMessage(loginName), HttpStatus.NOT_FOUND);
@@ -441,7 +441,7 @@ public class AdminService {
 
         // Send a DELETE request to the Eclipse publisher agreement API
         if (eclipse.isActive() && user.getEclipsePersonId() != null) {
-            eclipse.revokePublisherAgreement(user, admin);
+            eclipse.revokePublisherAgreement(user, admin, false);
         }
 
         var accessTokens = repositories.findAccessTokens(user);

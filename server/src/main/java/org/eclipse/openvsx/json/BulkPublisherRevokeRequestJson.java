@@ -28,5 +28,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record BulkPublisherRevokeRequestJson(
     List<PublisherRevocationTargetJson> publishers,
-    String reason
+    String reason,
+    boolean isMalicious
 ) {}

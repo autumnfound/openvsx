@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
 public class EclipseService {
 
     private static final String VAR_PERSON_ID = "personId";
+    private static final String VAR_IS_MALICIOUS = "isMalicious";
 
     public static final DateTimeFormatter CUSTOM_DATE_TIME = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
@@ -459,15 +460,15 @@ public class EclipseService {
      * the admin's access token is used for the Eclipse API request, otherwise
      * the access token of the target user is used.
      */
-    public void revokePublisherAgreement(UserData user, UserData admin) {
+    public void revokePublisherAgreement(UserData user, UserData admin, boolean isMalicious) {
         checkEclipseData(user);
 
         var eclipseToken = admin == null ? checkEclipseToken(user) : checkEclipseToken(admin);
         var headers = new HttpHeaders();
         headers.setBearerAuth(eclipseToken.accessToken());
         var request = new HttpEntity<>(headers);
-        var urlTemplate = buildApiUrl("openvsx/publisher_agreement/{personId}");
-        var uriVariables = Map.of(VAR_PERSON_ID, user.getEclipsePersonId());
+        var urlTemplate = buildApiUrl("openvsx/publisher_agreement/{personId}?is_malicious={isMalicious}");
+        var uriVariables = Map.of(VAR_PERSON_ID, user.getEclipsePersonId(), VAR_IS_MALICIOUS, Boolean.toString(isMalicious));
 
         try {
             var requestCallback = restTemplate.httpEntityCallback(request);

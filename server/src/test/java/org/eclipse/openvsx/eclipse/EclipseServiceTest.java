@@ -319,7 +319,7 @@ class EclipseServiceTest {
         var user = mockUser();
         user.setEclipsePersonId("test");
 
-        eclipse.revokePublisherAgreement(user, null);
+        eclipse.revokePublisherAgreement(user, null, false);
     }
 
     @Test
@@ -333,7 +333,7 @@ class EclipseServiceTest {
         Mockito.when(tokens.getActiveEclipseToken(admin))
             .thenReturn(admin.getEclipseToken());
 
-        eclipse.revokePublisherAgreement(user, admin);
+        eclipse.revokePublisherAgreement(user, admin, false);
     }
 
     private UserData mockUser() {
